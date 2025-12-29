@@ -9,38 +9,38 @@ CMSS verification environment using AXI cocotb.
 
 Install cocotb and related packages using pip:
 
-    $ pip install cocotb==1.9.2
-    $ pip install cocotb-bus
-    $ pip install cocotb-test
-    $ pip install cocotbext-apb
-    $ pip install cocotbext-axi
+    pip install cocotb==1.9.2
+    pip install cocotb-bus
+    pip install cocotb-test
+    pip install cocotbext-apb
+    pip install cocotbext-axi
 
 Modify cocotb VCS Makefile:
 
-    $ sed -i \
-    > -e '/ifeq ($(GUI),1)/a\
-    > \
-    > ifeq ($(WAVES), 1)\
-    > \tCOMPILE_ARGS += -kdb\
-    > \tCOMPILE_ARGS += -debug_access+all\
-    > \tCOMPILE_ARGS += -debug_access+struct\
-    > \tCOMPILE_ARGS += -debug_region+cell\
-    > \tCOMPILE_ARGS += +vcs+fsdbon\
-    > \tSIM_ARGS     += +fsdb+record\
-    > \tSIM_ARGS     += +fsdb+mda\
-    > \tSIM_ARGS     += +fsdb+signal\
-    > \tSIM_ARGS     += +fsdb+struct\
-    > \tSIM_ARGS     += +fsdbfile+dump.fsdb\
-    > endif\
-    > \
-    > ifeq ($(FILELISTS),)\
-    > \tFILELIST_ARGS =\
-    > else\
-    > \tFILELIST_ARGS = -f $(FILELISTS)\
-    > endif' \
-    > -e 's/+define+COCOTB_SIM=1 -sverilog/-sverilog/' \
-    > -e 's/$(VERILOG_SOURCES)/$(VERILOG_SOURCES) $(FILELIST_ARGS)/' \
-    > ~/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators/Makefile.vcs
+    sed -i \
+    -e '/ifeq ($(GUI),1)/a\
+    \
+    ifeq ($(WAVES), 1)\
+    \tCOMPILE_ARGS += -kdb\
+    \tCOMPILE_ARGS += -debug_access+all\
+    \tCOMPILE_ARGS += -debug_access+struct\
+    \tCOMPILE_ARGS += -debug_region+cell\
+    \tCOMPILE_ARGS += +vcs+fsdbon\
+    \tSIM_ARGS     += +fsdb+record\
+    \tSIM_ARGS     += +fsdb+mda\
+    \tSIM_ARGS     += +fsdb+signal\
+    \tSIM_ARGS     += +fsdb+struct\
+    \tSIM_ARGS     += +fsdbfile+dump.fsdb\
+    endif\
+    \
+    ifeq ($(FILELISTS),)\
+    \tFILELIST_ARGS =\
+    else\
+    \tFILELIST_ARGS = -f $(FILELISTS)\
+    endif' \
+    -e 's/+define+COCOTB_SIM=1 -sverilog/-sverilog/' \
+    -e 's/$(VERILOG_SOURCES)/$(VERILOG_SOURCES) $(FILELIST_ARGS)/' \
+    ~/.local/lib/python3.10/site-packages/cocotb/share/makefiles/simulators/Makefile.vcs
 
 After applying the changes, exit the session and reconnect.
 
